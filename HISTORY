@@ -1,0 +1,17 @@
+SETIstats 1.0 HISTORY
+
+
+Date       Version    Changes
+---------- --------- ------------------------------------------------------------
+
+
+
+SETIstats 1.0 PLANS
+
+-Prozessmanagement (pid.sah)
+-Sternkarte (actual WU, recent WUs)
+-History (needed for Sternkarte)
+-progressbar in trayicon
+-msgs from MuWU-client in Listbox
+-Web-Update
+-improve DM-Routine
