@@ -66,6 +66,20 @@ begin
   DMout;
 end;
 
+procedure MakeCross(x,y: integer; c: TColor);
+begin
+  DMin(Format('MakeCross(%d,%d)',[x,y]));
+  with Skymap.Map.Canvas do begin
+    Pen.Color := c;
+    Pen.Width := 1;
+    MoveTo(x,0);
+    LineTo(x,MapHeightPx);
+    MoveTo(0,y);
+    LineTo(MapWidthPx,y);
+  end;
+  DMout;
+end;
+
 procedure TSkymap.MapMouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
 var r,d: double;
@@ -115,11 +129,11 @@ begin
   Replace(x,'.',',');
   j := 0;
   for i:=3 to Length(x)-1 do begin
-    if (x[i]=' ') AND (x[i+1]=' ') AND (j>0) then begin
+    if (x[i]=' ') AND (x[i+1]<>' ') AND (j>0) then begin
       r := StrToFloat(Copy(x,j,i-j));
       j := i;
     end;
-    if (x[i]=' ') AND (x[i+1]=' ') AND (j=0) then j:=i;
+    if (x[i]=' ') AND (x[i+1]<>' ') AND (j=0) then j:=i;
   end;
   d := StrToFloat(Copy(x,j,Length(x)-j));
   DM(Format('Result: %f, %f', [r,d]));
@@ -143,19 +157,17 @@ begin
     if MainForm.CWUwhat.Checked then begin
       ExtractRD(MainForm.SkyCoord.Text,r,d);
       SkyToXY(r,d,x,y);
-      MakeCircle(x,y,clLime);
+      if MainForm.Crosses.Checked then MakeCross(x,y,clYellow) else MakeCircle(x,y,clLime);
     end else if MainForm.CWUwhat2.Checked then begin
-      ExtractRD(MainForm.SkyCoord.Text,r,d);
-      SkyToXY(r,d,x,y);
-      MakeCircle(x,y,clLime);
       ExtractRD(MainForm.SkyCoord2.Text,r,d);
       SkyToXY(r,d,x,y);
-      MakeCircle(x,y,clRed);
+      if MainForm.Crosses.Checked then MakeCross(x,y,clRed) else MakeCircle(x,y,clRed);
+      ExtractRD(MainForm.SkyCoord.Text,r,d);
+      SkyToXY(r,d,x,y);
+      if MainForm.Crosses.Checked then MakeCross(x,y,clLime) else MakeCircle(x,y,clLime);
     end else if MainForm.CWUwhat3.Checked then begin
       with Skymap.Map.Canvas do begin
         Pen.Color := clYellow;
-        Pen.Style := psSolid;
-        Pen.Mode := pmCopy;
         Pen.Width := 2;
       end;
       for i:=1 to MainForm.positions.Items.Count-1 do begin

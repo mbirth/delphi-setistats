@@ -326,6 +326,7 @@ object MainForm: TMainForm
             'tion of the current workunit'
           Caption = 'Start position only'
           TabOrder = 1
+          OnClick = CWUwhatClick
         end
         object CWUwhat2: TRadioButton
           Left = 32
@@ -340,6 +341,7 @@ object MainForm: TMainForm
           Checked = True
           TabOrder = 2
           TabStop = True
+          OnClick = CWUwhatClick
         end
         object CWUwhat3: TRadioButton
           Left = 32
@@ -351,6 +353,7 @@ object MainForm: TMainForm
             't workunit'
           Caption = 'Complete track'
           TabOrder = 3
+          OnClick = CWUwhatClick
         end
         object Crosses: TCheckBox
           Left = 8

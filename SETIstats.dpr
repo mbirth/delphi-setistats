@@ -11,7 +11,6 @@ begin
   Application.Initialize;
   Application.Title := 'SETI@home Statistics';
   Application.CreateForm(TMainForm, MainForm);
-  Application.CreateForm(TSkymap, Skymap);
   Application.ShowMainForm := false;
   Application.Run;
 end.

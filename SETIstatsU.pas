@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, IniFiles, ComCtrls, ExtCtrls, DateUtils, CoolTrayIcon,
+  Dialogs, StdCtrls, IniFiles, ComCtrls, ExtCtrls, DateUtils, TrayIcon,
   Menus, Math, jpeg;
 
 type
@@ -65,6 +65,7 @@ type
     Label11: TLabel;
     Label12: TLabel;
     PrefsSheet: TTabSheet;
+    TrayIcon: TTrayIcon;
     PopupMenu: TPopupMenu;
     ShowHideItem: TMenuItem;
     ExitItem: TMenuItem;
@@ -114,7 +115,6 @@ type
     HistShow2: TRadioButton;
     HistShow3: TRadioButton;
     Crosses: TCheckBox;
-    TrayIcon: TCoolTrayIcon;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure ShowemailClick(Sender: TObject);
